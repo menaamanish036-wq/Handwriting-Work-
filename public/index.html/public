@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwriting Book Publication - Work From Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #f39c12;
+            --gold-light: #f1c40f;
+            --gold-gradient: linear-gradient(135deg, #ffe066 0%, #d4af37 50%, #aa7c11 100%);
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --border-gold: 2px solid #d4af37;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--dark-bg); color: #fff; }
+        header { background: #000; border-bottom: 2px solid #d4af37; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo { display: flex; align-items: center; gap: 15px; }
+        .logo i { font-size: 40px; color: var(--gold); }
+        .logo-text h1 { font-size: 26px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        .logo-text p { font-size: 13px; color: #ddd; }
+        .contact-header { display: flex; gap: 20px; align-items: center; }
+        .contact-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #fff; }
+        .contact-item i { color: var(--gold); }
+        nav { background: linear-gradient(90deg, #111, #222, #111); border-bottom: 1px solid #333; padding: 10px 5%; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #fff; text-decoration: none; padding: 8px 16px; font-weight: 600; font-size: 14px; border-radius: 4px; transition: 0.3s; }
+        nav a:hover, nav a.active { background: var(--gold-gradient); color: #000; }
+        .hero { display: flex; justify-content: space-between; align-items: center; padding: 40px 5%; background: radial-gradient(circle, #221a00 0%, #050505 100%); border-bottom: 2px solid #333; flex-wrap: wrap; gap: 30px; }
+        .hero-text { flex: 1; min-width: 300px; }
+        .hero-text h2 { font-size: 38px; color: var(--gold); margin-bottom: 10px; }
+        .hero-text h3 { font-size: 22px; margin-bottom: 20px; color: #fff; }
+        .features-list { list-style: none; margin-bottom: 25px; }
+        .features-list li { font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .features-list i { color: var(--gold); }
+        .badge-box { text-align: center; border: var(--border-gold); padding: 20px; border-radius: 10px; background: rgba(20, 20, 20, 0.8); }
+        .badge-box i { font-size: 50px; color: var(--gold); }
+        .alert-strip { background: linear-gradient(90deg, #b8860b, #ffd700, #b8860b); color: #000; padding: 12px 5%; text-align: center; font-weight: 800; font-size: 15px; }
+        .section-title { text-align: center; margin: 40px 0 20px; font-size: 28px; color: var(--gold); text-transform: uppercase; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; padding: 0 5% 40px; }
+        .project-card { background: var(--card-bg); border: var(--border-gold); border-radius: 12px; padding: 25px; text-align: center; transition: 0.3s; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3); }
+        .project-card h3 { color: var(--gold); font-size: 22px; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .plan-details p { margin: 10px 0; font-size: 15px; }
+        .salary { font-size: 18px !important; font-weight: bold; color: #2ecc71; }
+        .fee { font-size: 18px !important; font-weight: bold; color: var(--gold); }
+        .btn-select { display: block; width: 100%; background: var(--gold-gradient); color: #000; border: none; padding: 10px; font-weight: 700; border-radius: 6px; margin-top: 15px; cursor: pointer; text-decoration: none; text-align: center; }
+        .payment-section { background: #111; padding: 40px 5%; border-top: 2px solid #333; border-bottom: 2px solid #333; display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; gap: 30px; }
+        .qr-box { background: #fff; padding: 20px; border-radius: 12px; text-align: center; color: #000; border: 4px solid var(--gold); }
+        .qr-box img { width: 180px; height: 180px; }
+        .upi-id { font-weight: bold; font-size: 15px; margin-top: 10px; }
+        .reg-form { background: var(--card-bg); border: var(--border-gold); padding: 30px; border-radius: 12px; width: 100%; max-width: 480px; }
+        .reg-form h3 { color: var(--gold); margin-bottom: 20px; text-align: center; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 600; color: var(--gold); }
+        .form-group input, .form-group select { width: 100%; padding: 9px; background: #222; border: 1px solid #444; color: #fff; border-radius: 5px; font-size: 14px; }
+        footer { background: #050505; padding: 30px 5% 15px; border-top: 1px solid #222; text-align: center; }
+        .footer-contacts { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 20px; }
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); text-decoration: none; z-index: 100; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-book-open"></i>
+            <div class="logo-text">
+                <h1>Handwriting Book Publication</h1>
+                <p>Write Your Skills... Work From Home... Earn From Home...</p>
+            </div>
+        </div>
+        <div class="contact-header">
+            <div class="contact-item"><i class="fas fa-phone-alt"></i> +91 9460642427</div>
+            <div class="contact-item"><i class="fas fa-envelope"></i> meenamanish123@gmail.com</div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#" class="active">Home</a>
+        <a href="#projects">Work Projects</a>
+        <a href="#register">Registration</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Handwriting Work From Home</h2>
+            <h3>Apni Handwriting Skill ko Banaye Apni Income ka Zariya!</h3>
+            <ul class="features-list">
+                <li><i class="fas fa-check-circle"></i> 100% Genuine Work</li>
+                <li><i class="fas fa-check-circle"></i> Flexible Timing</li>
+                <li><i class="fas fa-check-circle"></i> No Investment Risk</li>
+            </ul>
+            <a href="#projects" class="btn-select" style="display:inline-block; width:auto; padding:12px 30px;">Select Project Now &rarr;</a>
+        </div>
+        <div class="badge-box">
+            <i class="fas fa-award"></i>
+            <h3 style="color:var(--gold); margin-top:10px;">Trusted & Registered</h3>
+            <p>Certified Company</p>
+        </div>
+    </section>
+
+    <div class="alert-strip">
+        ⚡ You will be given 50% salary in advance 15 minutes after registration is completed! Registration fee is 100% Refundable with Salary. ⚡
+    </div>
+
+    <h2 class="section-title" id="projects">Select Writing Project Plan ✍️</h2>
+    <div class="projects-grid">
+        <div class="project-card">
+            <h3>Project 1️⃣</h3>
+            <div class="plan-details">
+                <p>📚 50 Pages Book (Front & Back 100)</p>
+                <p>⏰ Timing: <b>7 Days</b></p>
+                <p class="salary">💰 Salary: ₹25,000/-</p>
+                <p class="fee">✔️ Reg Fee: ₹499/-</p>
+            </div>
+            <button class="btn-select" onclick="selectPlan('Project 1', '499')">Select Plan</button>
+        </div>
+        <div class="project-card">
+            <h3>Project 2️⃣</h3>
+            <div class="plan-details">
+                <p>📚 90 Pages Book (Front & Back 180)</p>
+                <p>⏰ Timing: <b>10 Days</b></p>
+                <p class="salary">💰 Salary: ₹30,000/-</p>
+                <p class="fee">✔️ Reg Fee: ₹750/-</p>
+            </div>
+            <button class="btn-select" onclick="selectPlan('Project 2', '750')">Select Plan</button>
+        </div>
+        <div class="project-card">
+            <h3>Project 3️⃣</h3>
+            <div class="plan-details">
+                <p>📚 120 Pages Book (Front & Back 240)</p>
+                <p>⏰ Timing: <b>15 Days</b></p>
+                <p class="salary">💰 Salary: ₹35,000/-</p>
+                <p class="fee">✔️ Reg Fee: ₹1,199/-</p>
+            </div>
+            <button class="btn-select" onclick="selectPlan('Project 3', '1199')">Select Plan</button>
+        </div>
+        <div class="project-card">
+            <h3>Project 4️⃣</h3>
+            <div class="plan-details">
+                <p>📚 190 Pages Book (Front & Back 380)</p>
+                <p>⏰ Timing: <b>26 Days</b></p>
+                <p class="salary">💰 Salary: ₹40,000/-</p>
+                <p class="fee">✔️ Reg Fee: ₹1,499/-</p>
+            </div>
+            <button class="btn-select" onclick="selectPlan('Project 4', '1499')">Select Plan</button>
+        </div>
+    </div>
+
+    <section class="payment-section" id="register">
+        <div class="qr-box">
+            <h3>Scan QR Code & Pay</h3>
+            <img id="display-qr" src="" alt="UPI QR Code">
+            <div class="upi-id" id="display-upi">UPI ID: Loading...</div>
+            <p style="font-size:12px; color:#555; margin-top:5px;">Scan using PhonePe / GooglePay / Paytm</p>
+        </div>
+
+        <div class="reg-form">
+            <h3>REGISTRATION FORM 📚📖✏️</h3>
+            <form id="customerForm">
+                <div class="form-group">
+                    <label>NAME</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>ADDRESS</label>
+                    <input type="text" id="address" placeholder="Enter your full address" required>
+                </div>
+                <div class="form-group">
+                    <label>MOBILE NUMBER</label>
+                    <input type="tel" id="mobile" placeholder="Enter 10 digit mobile number" required>
+                </div>
+                <div class="form-group">
+                    <label>PIN CODE</label>
+                    <input type="text" id="pincode" placeholder="Enter 6 digit pin code" required>
+                </div>
+                <div class="form-group">
+                    <label>DISTRICT</label>
+                    <input type="text" id="district" placeholder="Enter your district" required>
+                </div>
+                <div class="form-group">
+                    <label>PROJECT NO.</label>
+                    <select id="project" required>
+                        <option value="Project 1">Project 1 (50 Pages - ₹499 Fee)</option>
+                        <option value="Project 2">Project 2 (90 Pages - ₹750 Fee)</option>
+                        <option value="Project 3">Project 3 (120 Pages - ₹1,199 Fee)</option>
+                        <option value="Project 4">Project 4 (190 Pages - ₹1,499 Fee)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-select" style="margin-top: 15px;">Submit Registration</button>
+            </form>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-contacts">
+            <div><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp: +91 9460642427</div>
+            <div><i class="fas fa-envelope" style="color:var(--gold);"></i> Email: meenamanish123@gmail.com</div>
+        </div>
+        <p>&copy; 2026 Handwriting Book Publication. All Rights Reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/919460642427" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function selectPlan(planName) {
+            document.getElementById('project').value = planName;
+            window.location.href = '#register';
+        }
+
+        async function loadPaymentDetails() {
+            try {
+                const res = await fetch('/api/payment-details');
+                const data = await res.json();
+                if (data.upiId) document.getElementById('display-upi').innerText = "UPI ID: " + data.upiId;
+                if (data.qrImageUrl) document.getElementById('display-qr').src = data.qrImageUrl;
+            } catch (err) { console.log(err); }
+        }
+        loadPaymentDetails();
+
+        document.getElementById('customerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                address: document.getElementById('address').value,
+                mobile: document.getElementById('mobile').value,
+                pincode: document.getElementById('pincode').value,
+                district: document.getElementById('district').value,
+                project: document.getElementById('project').value
+            };
+            const res = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            const result = await res.json();
+            if(result.success) {
+                alert('Registration Successful! Please send screenshot on WhatsApp.');
+                document.getElementById('customerForm').reset();
+            } else {
+                alert('Error submitting form.');
+            }
+        });
+    </script>
+</body>
+  </html>
+  
