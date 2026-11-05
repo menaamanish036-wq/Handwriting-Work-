@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Handwriting Project</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+        .container { max-width: 1100px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ddd; padding-bottom: 15px; margin-bottom: 20px; }
+        .box { background: #fff8e1; border: 1px solid #ffe082; padding: 15px; border-radius: 6px; margin-bottom: 25px; }
+        .box h3 { margin-top: 0; color: #b8860b; }
+        .form-group { margin-bottom: 10px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input[type="text"], input[type="file"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        button { background: #27ae60; color: #fff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; }
+        th { background: #333; color: #fff; }
+        .logout-btn { background: #e74c3c; text-decoration: none; color: #fff; padding: 8px 15px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>⚙️ Admin Control Panel</h2>
+            <a href="/admin/logout" class="logout-btn">Logout</a>
+        </div>
+
+        <div class="box">
+            <h3>💳 Update Payment QR Code & UPI ID</h3>
+            <form id="qrForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>New UPI ID:</label>
+                    <input type="text" id="upiId" name="upiId" placeholder="e.g. 8504823316@thecardco" required>
+                </div>
+                <div class="form-group">
+                    <label>Upload New QR Code Image (Optional):</label>
+                    <input type="file" name="qrImage" accept="image/*">
+                </div>
+                <button type="submit">Update QR & UPI</button>
+            </form>
+        </div>
+
+        <h3>📋 Registered Customers</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>District</th>
+                    <th>Pin Code</th>
+                    <th>Address</th>
+                    <th>Project</th>
+                </tr>
+            </thead>
+            <tbody id="regTable">
+                <tr><td colspan="7">Loading registrations...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function loadAdminData() {
+            const resDetails = await fetch('/api/payment-details');
+            const dataDetails = await resDetails.json();
+            document.getElementById('upiId').value = dataDetails.upiId || '';
+
+            const res = await fetch('/api/admin/registrations');
+            const regs = await res.json();
+            const tableBody = document.getElementById('regTable');
+            tableBody.innerHTML = '';
+
+            if(regs.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7">No registrations found yet.</td></tr>';
+                return;
+            }
+
+            regs.forEach(r => {
+                const row = `<tr>
+                    <td>${new Date(r.date).toLocaleDateString()}</td>
+                    <td><b>${r.name}</b></td>
+                    <td>${r.mobile}</td>
+                    <td>${r.district}</td>
+                    <td>${r.pincode}</td>
+                    <td>${r.address}</td>
+                    <td><span style="color:green;font-weight:bold;">${r.project}</span></td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        document.getElementById('qrForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const res = await fetch('/api/admin/update-qr', { method: 'POST', body: formData });
+            const result = await res.json();
+            alert(result.message);
+        });
+
+        loadAdminData();
+    </script>
+</body>
+</html>
